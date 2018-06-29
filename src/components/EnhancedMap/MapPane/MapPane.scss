@@ -144,6 +144,14 @@
           }
         }
       }
+
+      @media(max-width: $app-mobile-break) {
+        .leaflet-popup-content {
+          .feature-properties {
+            max-height: calc(70vh - #{$mobile-navbar-height} - #{$mobile-address-bar-height});
+          }
+        }
+      }
     }
   }
 
