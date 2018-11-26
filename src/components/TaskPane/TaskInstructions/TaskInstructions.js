@@ -5,6 +5,7 @@ import _keys from 'lodash/keys'
 import _isEmpty from 'lodash/isEmpty'
 import AsMappableTask from '../../../interactions/Task/AsMappableTask'
 import MarkdownContent from '../../MarkdownContent/MarkdownContent'
+import './TaskInstructions.css'
 
 /**
  * TaskInstructions displays, as Markdown, the instructions for the given task
@@ -41,7 +42,11 @@ export default class TaskInstructions extends Component {
       return null
     }
 
-    return <MarkdownContent markdown={this.substitutePropertyTags(taskInstructions)} />
+    return (
+      <div className="task-instructions">
+        <MarkdownContent markdown={this.substitutePropertyTags(taskInstructions)} />
+      </div>
+    )
   }
 }
 

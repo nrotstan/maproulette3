@@ -16,6 +16,7 @@ import ProjectDashboard from './Manage/ProjectDashboard/ProjectDashboard'
 import ChallengeDashboard from './Manage/ChallengeDashboard/ChallengeDashboard'
 import MetricsOverview from './MetricsOverview/MetricsOverview'
 import SignInButton from '../SignInButton/SignInButton'
+import './Manage/Widgets/widget_registry.js'
 import './AdminPane.css'
 
 // Setup child components with needed HOCs.

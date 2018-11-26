@@ -64,8 +64,8 @@ export default {
     renderFailure: messages.mapRenderFailure,
   },
 
-  dashboard: {
-    renderFailure: messages.dashboardRenderFailure,
+  widgetWorkspace: {
+    renderFailure: messages.widgetWorkspaceRenderFailure,
   },
 
   josm: {

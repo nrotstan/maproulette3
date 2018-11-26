@@ -5,6 +5,7 @@ import VirtualChallengeNameLink
        from '../VirtualChallengeNameLink/VirtualChallengeNameLink'
 import ChallengeNameLink from '../ChallengeNameLink/ChallengeNameLink'
 import OwnerContactLink from '../OwnerContactLink/OwnerContactLink'
+import './ChallengeInfoSummary.css'
 
 /**
  * ChallengeInfoSummary displays various pieces of summary information about
@@ -16,19 +17,19 @@ import OwnerContactLink from '../OwnerContactLink/OwnerContactLink'
 export default class ChallengeInfoSummary extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="challenge-info-summary">
         <VirtualChallengeNameLink {...this.props} />
 
-        <h2 className="active-task-details--name">
+        <h2 className="challenge-info-summary__challenge-name">
           <ChallengeNameLink {...this.props} />
         </h2>
 
-        <div className="active-task-details--project-name">
+        <div className="challenge-info-summary__project-name">
           {_get(this.props.task, 'parent.parent.displayName')}
         </div>
 
         <OwnerContactLink {...this.props} />
-      </React.Fragment>
+      </div>
     )
   }
 }

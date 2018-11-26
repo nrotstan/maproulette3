@@ -5,6 +5,7 @@ import _isFinite from 'lodash/isFinite'
 import { FormattedMessage } from 'react-intl'
 import SvgSymbol from '../../SvgSymbol/SvgSymbol'
 import messages from './Messages'
+import './OwnerContactLink.css'
 
 export default class OwnerContactLink extends Component {
   state = {
@@ -40,7 +41,7 @@ export default class OwnerContactLink extends Component {
     }
 
     return (
-      <a className="active-task-details__contact-owner"
+      <a className="owner-contact-link"
           href={this.state.contactUrl}
           target='_blank'>
         <SvgSymbol viewBox='0 0 20 20' sym="envelope-icon" />

@@ -1,0 +1,20 @@
+@import 'variables.scss';
+
+a.owner-contact-link {
+  color: $primary;
+  font-size: $size-7;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  svg {
+    fill: $primary;
+    height: 15px;
+    width: auto;
+    margin-right: 0.5em;
+  }
+
+  &:hover svg {
+    fill: $grey-darkest;
+  }
+}

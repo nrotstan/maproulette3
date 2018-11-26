@@ -28,6 +28,7 @@ import ErrorModal from './components/ErrorModal/ErrorModal'
 import Sprites from './components/Sprites/Sprites'
 import MobileNotSupported
        from './components/MobileNotSupported/MobileNotSupported'
+import './components/Widgets/widget_registry'
 import './App.css'
 
 // Setup child components with necessary HOCs

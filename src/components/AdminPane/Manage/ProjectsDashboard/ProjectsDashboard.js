@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
-import { generateDashboardId, DashboardDataTarget }
-       from '../../../../services/Dashboard/Dashboard'
+import { generateWidgetId, WidgetDataTarget, widgetDescriptor }
+       from '../../../../services/Widget/Widget'
 import { projectPassesFilters, defaultProjectFilters }
-       from '../../../../services/Dashboard/ProjectFilter/ProjectFilter'
+       from '../../../../services/Widget/ProjectFilter/ProjectFilter'
 import WithManageableProjects
        from '../../HOCs/WithManageableProjects/WithManageableProjects'
 import WithPinned from '../../HOCs/WithPinned/WithPinned'
-import WithDashboards from '../../HOCs/WithDashboards/WithDashboards'
+import WithWidgetWorkspaces
+       from '../../../HOCs/WithWidgetWorkspaces/WithWidgetWorkspaces'
 import WithDashboardEntityFilter
        from '../../HOCs/WithDashboardEntityFilter/WithDashboardEntityFilter'
-import Dashboard from '../Dashboard/Dashboard'
-import { blockDescriptor } from '../GridBlocks/BlockTypes'
+import WidgetWorkspace from '../../../WidgetWorkspace/WidgetWorkspace'
 import ProjectFilterGroup from '../ProjectFilterGroup/ProjectFilterGroup'
 import BusySpinner from '../../../BusySpinner/BusySpinner'
 import manageMessages from '../Messages'
@@ -25,20 +25,20 @@ const DASHBOARD_NAME = "projects"
 
 export const defaultDashboardSetup = function() {
   return {
-    dataModelVersion: 1,
+    dataModelVersion: 2,
     name: DASHBOARD_NAME,
-    id: generateDashboardId(),
+    id: generateWidgetId(),
     label: "Projects",
     filters: defaultProjectFilters(),
-    blocks: [
-      blockDescriptor('ProjectAboutBlock'),
-      blockDescriptor('ProjectCountBlock'),
-      blockDescriptor('ProjectListBlock'),
+    widgets: [
+      widgetDescriptor('ProjectAboutWidget'),
+      widgetDescriptor('ProjectCountWidget'),
+      widgetDescriptor('ProjectListWidget'),
     ],
     layout: [
-      {i: generateDashboardId(), x: 0, y: 0, w: 4, h: 10},
-      {i: generateDashboardId(), x: 0, y: 10, w: 4, h: 10},
-      {i: generateDashboardId(), x: 8, y: 4, w: 8, h: 20},
+      {i: generateWidgetId(), x: 0, y: 0, w: 4, h: 10},
+      {i: generateWidgetId(), x: 0, y: 10, w: 4, h: 10},
+      {i: generateWidgetId(), x: 8, y: 4, w: 8, h: 20},
     ],
   }
 }
@@ -75,7 +75,7 @@ export class ProjectsDashboard extends Component {
          <div className="projects-dashboard__no-projects">
            <FormattedMessage {...messages.regenerateHomeProject} />
          </div> :
-         <Dashboard {...this.props} filterComponent={ProjectFilterGroup} />
+         <WidgetWorkspace {...this.props} filterComponent={ProjectFilterGroup} />
         }
       </div>
     )
@@ -98,7 +98,7 @@ ProjectsDashboard.defaultProps = {
 export default
 WithManageableProjects(
   WithPinned(
-    WithDashboards(
+    WithWidgetWorkspaces(
       WithDashboardEntityFilter(
         ProjectsDashboard,
         'project',
@@ -107,7 +107,7 @@ WithManageableProjects(
         'filteredProjects',
         projectPassesFilters
       ),
-      DashboardDataTarget.projects,
+      WidgetDataTarget.projects,
       DASHBOARD_NAME,
       defaultDashboardSetup
     )

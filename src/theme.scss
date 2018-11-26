@@ -250,6 +250,10 @@ $tablet: 40px;
   }
 }
 
+.button.is-primary {
+  @include invert-on-hover($primary, $white);
+}
+
 .button.is-secondary {
   @include invert-on-hover($grey, $white);
 }

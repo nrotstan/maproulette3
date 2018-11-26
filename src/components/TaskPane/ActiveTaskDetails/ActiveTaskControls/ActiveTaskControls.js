@@ -8,28 +8,15 @@ import { allowedStatusProgressions,
          isFinalStatus }
        from '../../../../services/Task/TaskStatus/TaskStatus'
 import TaskCommentInput from './TaskCommentInput/TaskCommentInput'
-import TaskTrackControls from '../../TaskTrackControls/TaskTrackControls'
-import TaskRandomnessControl
-       from '../../TaskRandomnessControl/TaskRandomnessControl'
-import MoreOptionsControl
-       from './MoreOptionsControl/MoreOptionsControl'
-import TaskManageControls from '../../TaskManageControls/TaskManageControls'
 import SignInButton from '../../../SignInButton/SignInButton'
 import WithSearch from '../../../HOCs/WithSearch/WithSearch'
-import WithDeactivateOnOutsideClick from
-       '../../../HOCs/WithDeactivateOnOutsideClick/WithDeactivateOnOutsideClick'
 import WithKeyboardShortcuts
        from '../../../HOCs/WithKeyboardShortcuts/WithKeyboardShortcuts'
-import KeyboardShortcutReference
-       from '../KeyboardShortcutReference/KeyboardShortcutReference'
 import BusySpinner from '../../../BusySpinner/BusySpinner'
 import TaskCompletionStep1 from './TaskCompletionStep1/TaskCompletionStep1'
 import TaskCompletionStep2 from './TaskCompletionStep2/TaskCompletionStep2'
 import TaskNextControl from './TaskNextControl/TaskNextControl'
 import './ActiveTaskControls.css'
-
-const KeyboardReferencePopout =
-  WithKeyboardShortcuts(WithDeactivateOnOutsideClick(KeyboardShortcutReference))
 
 /**
  * ActiveTaskControls renders the appropriate controls for the given
@@ -128,18 +115,6 @@ export class ActiveTaskControls extends Component {
                                 cancelEditing={this.cancelEditing}
                                 {...this.props} />
           }
-
-          <MoreOptionsControl className="active-task-controls__additional-controls"
-                              {..._omit(this.props, 'className')} >
-            <TaskTrackControls className="active-task-controls__track-task"
-                              {..._omit(this.props, ['className', 'isMinimized'])} />
-            <TaskRandomnessControl {..._omit(this.props, ['className', 'isMinimized'])} />
-            {!this.props.isMinimized &&
-             <KeyboardReferencePopout {..._omit(this.props, ['className'])} />
-            }
-
-            <TaskManageControls {...this.props} />
-          </MoreOptionsControl>
         </div>
       )
     }

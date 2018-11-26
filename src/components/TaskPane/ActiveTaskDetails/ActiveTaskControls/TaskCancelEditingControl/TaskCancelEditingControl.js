@@ -40,7 +40,7 @@ export default class TaskCancelEditingControl extends Component {
   render() {
     return (
       <div className="has-centered-children">
-        <button className={classNames("button is-green is-outlined cancel-control",
+        <button className={classNames("button is-primary is-outlined cancel-control",
                                       this.props.className)}
                 onClick={this.props.cancelEditing}
                 title={this.props.intl.formatMessage(messages.cancelEditingTooltip)}>

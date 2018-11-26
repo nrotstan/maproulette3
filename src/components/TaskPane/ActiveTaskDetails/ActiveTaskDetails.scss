@@ -159,46 +159,8 @@
     margin-left: 8px;
   }
 
-  &--name {
-    color: $primary;
-    font-size: $size-4;
-  }
-
-  &--project-name {
-    font-size: $size-8;
-    color: $grey-light;
-    margin-bottom: .25rem;
-  }
-
-  &__contact-owner {
-    color: $grey;
-    font-size: $size-8;
-    display: inline-flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    svg {
-      fill: $grey;
-      height: 1em;
-      width: auto;
-      margin-right: 0.5em;
-    }
-
-    &:hover svg {
-      fill: $grey-darkest;
-    }
-  }
-
   &--inset-map {
     margin-top: 20px;
-  }
-
-  &--instructions, .info-popout--instructions {
-    color: $grey;
-    font-size: $size-7;
-    line-height: 24px;
-    @include constrained-text-content();
-    @include markdown-content();
   }
 
   &--comment-badge {

@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+.challenge-info-summary {
+  &__challenge-name a {
+    color: $green;
+    font-size: $size-5;
+  }
+
+  &__project-name {
+    font-size: $size-7;
+    color: $grey-light;
+    margin-bottom: .25rem;
+  }
+}

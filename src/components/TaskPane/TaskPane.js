@@ -3,21 +3,56 @@ import PropTypes from 'prop-types'
 import MediaQuery from 'react-responsive'
 import _isFinite from 'lodash/isFinite'
 import _get from 'lodash/get'
-import _omit from 'lodash/omit'
+import { generateWidgetId, WidgetDataTarget, widgetDescriptor }
+       from '../../services/Widget/Widget'
+import WithWidgetWorkspaces
+       from '../HOCs/WithWidgetWorkspaces/WithWidgetWorkspaces'
+import WithCurrentUser from '../HOCs/WithCurrentUser/WithCurrentUser'
+import WithChallengePreferences
+       from '../HOCs/WithChallengePreferences/WithChallengePreferences'
+import WidgetWorkspace from '../WidgetWorkspace/WidgetWorkspace'
 import MapPane from '../EnhancedMap/MapPane/MapPane'
 import TaskMap from './TaskMap/TaskMap'
 import BusySpinner from '../BusySpinner/BusySpinner'
-import WithCurrentUser from '../HOCs/WithCurrentUser/WithCurrentUser'
-import WithEditor from '../HOCs/WithEditor/WithEditor'
-import WithChallengePreferences
-       from '../HOCs/WithChallengePreferences/WithChallengePreferences'
-import ActiveTaskDetails from './ActiveTaskDetails/ActiveTaskDetails'
 import MobileTaskDetails from './MobileTaskDetails/MobileTaskDetails'
 import './TaskPane.css'
 
 // Setup child components with necessary HOCs
-const TaskDetailsSidebar = WithCurrentUser(WithEditor(ActiveTaskDetails))
 const MobileTabBar = WithCurrentUser(MobileTaskDetails)
+
+const WIDGET_WORKSPACE_NAME = "taskCompletion"
+
+export const defaultWorkspaceSetup = function() {
+  return {
+    dataModelVersion: 2,
+    name: WIDGET_WORKSPACE_NAME,
+    label: "Task Completion",
+    widgets: [
+      widgetDescriptor('ChallengeNameWidget'),
+      widgetDescriptor('TaskInstructionsWidget'),
+      widgetDescriptor('TaskCommentsWidget'),
+      widgetDescriptor('TaskCompletionWidget'),
+      widgetDescriptor('TaskMoreOptionsWidget'),
+      widgetDescriptor('KeyboardShortcutsWidget'),
+      widgetDescriptor('TaskLocationWidget'),
+      widgetDescriptor('CompletionProgressWidget'),
+      widgetDescriptor('ChallengeShareWidget'),
+      widgetDescriptor('TaskMapWidget'),
+    ],
+    layout: [
+      {i: generateWidgetId(), x: 0, y: 0, w: 3, h: 6},
+      {i: generateWidgetId(), x: 0, y: 6, w: 3, h: 8},
+      {i: generateWidgetId(), x: 0, y: 14, w: 3, h: 4},
+      {i: generateWidgetId(), x: 0, y: 18, w: 3, h: 12},
+      {i: generateWidgetId(), x: 0, y: 30, w: 3, h: 6},
+      {i: generateWidgetId(), x: 0, y: 36, w: 3, h: 7},
+      {i: generateWidgetId(), x: 0, y: 43, w: 3, h: 10},
+      {i: generateWidgetId(), x: 0, y: 53, w: 3, h: 4},
+      {i: generateWidgetId(), x: 0, y: 57, w: 3, h: 3},
+      {i: generateWidgetId(), x: 4, y: 0, w: 9, h: 19},
+    ],
+  }
+}
 
 /**
  * TaskPane presents the current task being actively worked upon. It contains
@@ -68,16 +103,17 @@ export class TaskPane extends Component {
     return (
       <div className='task-pane'>
         <MediaQuery query="(min-width: 1024px)">
-          <TaskDetailsSidebar task={this.props.task}
-                              completeTask={this.completeTask}
-                              {..._omit(this.props, 'completeTask')} />
+          <WidgetWorkspace {...this.props}
+                           completeTask={this.completeTask}
+                           completingTask={this.state.completingTask} />
         </MediaQuery>
-        <MapPane completingTask={this.state.completingTask}>
-          <TaskMap task={this.props.task}
-                   challenge={this.props.task.parent}
-                   {...this.props} />
-        </MapPane>
         <MediaQuery query="(max-width: 1023px)">
+          <MapPane completingTask={this.state.completingTask}>
+            <TaskMap isMobile
+                     task={this.props.task}
+                     challenge={this.props.task.parent}
+                     {...this.props} />
+          </MapPane>
           <MobileTabBar {...this.props} />
         </MediaQuery>
       </div>
@@ -90,4 +126,12 @@ TaskPane.propTypes = {
   task: PropTypes.object,
 }
 
-export default WithChallengePreferences(TaskPane)
+export default
+WithChallengePreferences(
+  WithWidgetWorkspaces(
+    TaskPane,
+    WidgetDataTarget.task,
+    WIDGET_WORKSPACE_NAME,
+    defaultWorkspaceSetup
+  )
+)

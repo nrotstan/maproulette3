@@ -200,7 +200,7 @@ export class TaskMap extends Component {
     // capabilities of the layer.
 
     return (
-      <div className={classNames("task-map full-screen-map task")}>
+      <div className={classNames("task-map task", {"full-screen-map": this.props.isMobile})}>
         <LayerToggle {...this.props}
                      showTaskFeatures={this.state.showTaskFeatures}
                      toggleTaskFeatures={this.toggleTaskFeatureVisibility}
