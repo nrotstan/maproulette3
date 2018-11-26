@@ -14,7 +14,7 @@ export default function () {
         <symbol id="error-icon" viewBox="0 0 20 20">
           <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM9 5v6h2V5H9zm0 8v2h2v-2H9z"/>
         </symbol>
-        <symbol id="dashboard-add-icon" viewBox="0 0 20 20">
+        <symbol id="add-workspace-icon" viewBox="0 0 20 20">
           <path d="M9 10V8h2v2h2v2h-2v2H9v-2H7v-2h2zM0 3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm2 2v12h16V5H2z"/>
         </symbol>
         <symbol id="list-icon" viewBox="0 0 20 20">

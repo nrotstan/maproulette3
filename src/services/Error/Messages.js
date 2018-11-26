@@ -137,9 +137,9 @@ export default defineMessages({
     defaultMessage: "Unable to render the map. This is usally caused by a problematic custom basemap.",
   },
 
-  dashboardRenderFailure: {
-    id: 'Errors.dashboard.renderFailure',
-    defaultMessage: "Unable to render the dashboard. Switching to a working layout.",
+  widgetWorkspaceRenderFailure: {
+    id: 'Errors.widgetWorkspace.renderFailure',
+    defaultMessage: "Unable to render workspace. Switching to a working layout.",
   },
 
   josmNoResponse: {
